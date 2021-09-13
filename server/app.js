@@ -22,47 +22,6 @@ app.use(morgan('tiny'));
 
 app.use('/tweets', tweetsRouter);
 
-/////////////
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//   res.setHeader(
-//     'Access-Control-Allow-Methods',
-//     'OPTIONS, GET, POST, PUT, DELETE'
-//   );
-//   next();
-// });
-// app.get('/tweets', (req, res, next) => {
-//   console.log('yes /tweets');
-//   // query는 /tweets?username=:username 식으로 app.get 새로만들지 말고 여기다 조건문 추가?
-//   if (req.query.username) {
-//     res.send(tweets.filter((tweet) => tweet.username === req.query.username));
-//   }
-//   res.send(tweets);
-// });
-// app.get('/tweets/:id', (req, res, next) => {
-//   // PARAMS는 STRING이라 NUMBER로 변환해줘야함
-//   // FILTER함수는 RETURN 값 있어야함
-//   const filtered = tweets.filter((tweet) => tweet.id === Number(req.params.id));
-//   res.send(filtered);
-// });
-// app.post('/tweets', (req, res) => {
-//   tweets.push(req.body);
-//   res.status(201).send(tweets);
-// });
-
-// app.put('/tweets/:id', (req, res, next) => {
-//   const tweet = tweets.find((tweet) => tweet.id === Number(req.params.id));
-//   if (!tweet) res.status(404).send('sorry, id not found!');
-
-//   tweet.text = req.body.text;
-//   res.status(200).send(tweet);
-// });
-// app.delete('/tweets/:id', (req, res, next) => {
-//   tweets = tweets.filter((tweet) =>  tweet.id !== parseInt(req.params.id)
-//   );
-//   res.status(204).send(tweets);
-// });
-
 app.use((req, res, next) => {
   res.sendStatus(404);
 });

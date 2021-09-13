@@ -9,54 +9,51 @@ export default class TweetService {
       url: 'https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-1.png',
     },
   ];
-  constructor(baseURL) {
-    this.baseURL = baseURL;
+  constructor(baseURL, http) {
+    this.http = http;
   }
 
   async getTweets(username) {
     const query = username ? `?username=${username}` : '';
-    const response = await fetch(`${this.baseURL}/tweets${query}`, {
+    return this.http.fetch(`/tweets${query}`, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json'}
     });
-    const data = await response.json();
-    if (response.status !== 200) {
-      throw new Error(data.message);
-    }
-    return data;
+
+    // const response = await fetch(`${this.baseURL}/tweets${query}`, {
+    //   method: 'GET',
+    //   headers: { 'Content-Type': 'application/json'}
+    // });
+    // const data = await response.json();
+    // if (response.status !== 200) {
+    //   throw new Error(data.message);
+    // }
+    // return data;
   }
   async postTweet(text) {
-    const response = await fetch(`${this.baseURL}/tweets`, {
+    return this.http.fetch(`/tweets`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ text, username: 'ellie', name: 'Ellie'})
     });
-    const data = await response.json();
-    if (response.status !== 201) {
-      throw new Error(data.message);
-    }
-    return data;
+    // const response = await fetch(`${this.baseURL}/tweets`, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json'},
+    //   body: JSON.stringify({ text, username: 'ellie', name: 'Ellie'})
+    // });
+    // const data = await response.json();
+    // if (response.status !== 201) {
+    //   throw new Error(data.message);
+    // }
+    // return data;
   }
   async updateTweet(tweetId, text) {
-    const response = await fetch(`${this.baseURL}/tweets/${tweetId}`, {
+    return this.http.fetch(`/tweets/${tweetId}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ text })
     });
-    // json() : response 스트림이 완료될때까지 읽은 후 Promise형태로 반환한다
-    const data = await response.json();
-    if (response.status !== 200) {
-      throw new Error(data.message);
-    }
-    return data;
   }
   async deleteTweet(tweetId) {
-    const response = await fetch(`${this.baseURL}/tweets/${tweetId}`, {
+    return this.http.fetch(`/tweets/${tweetId}`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json'},
     });
-    if (response.status !== 204) {
-      throw new Error('delete error!');
-    }
   }
 }
