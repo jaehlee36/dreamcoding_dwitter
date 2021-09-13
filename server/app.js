@@ -15,24 +15,14 @@ import tweetsRouter from './router/tweets.js';
 // ex) res.sendStatus(500);
 
 const app = express();
-app.use(helmet());
-app.use(morgan('tiny'));
-app.use(cors());
 app.use(express.json());
+app.use(helmet());
+app.use(cors());
+app.use(morgan('tiny'));
 
 app.use('/tweets', tweetsRouter);
 
 /////////////
-let tweets = [
-  {
-    id: 1,
-    text: '드림코딩에서 강의 들으면 너무 좋으다',
-    createdAt: '2021-05-09T04:20:57.000Z',
-    name: 'Bob',
-    username: 'bob',
-    url: 'https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-1.png',
-  },
-];
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 //   res.setHeader(
@@ -77,6 +67,7 @@ app.use((req, res, next) => {
   res.sendStatus(404);
 });
 app.use((error, req, res, next) => {
+  console.error(error);
   res.sendStatus(500);
 });
 

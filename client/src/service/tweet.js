@@ -19,7 +19,7 @@ export default class TweetService {
       method: 'GET',
       headers: { 'Content-Type': 'application/json'}
     });
-    const data = response.json();
+    const data = await response.json();
     if (response.status !== 200) {
       throw new Error(data.message);
     }
@@ -31,7 +31,7 @@ export default class TweetService {
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ text, username: 'ellie', name: 'Ellie'})
     });
-    const data = response.json();
+    const data = await response.json();
     if (response.status !== 201) {
       throw new Error(data.message);
     }
