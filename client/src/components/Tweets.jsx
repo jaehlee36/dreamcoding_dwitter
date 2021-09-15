@@ -59,8 +59,8 @@ const Tweets = memo(({ tweetService, username, addable }) => {
         />
       )}
       {error && <Banner text={error} isAlert={true} transient={true} />}
-      {tweets.length === 0 && <p className="tweets-empty">No Tweets Yet</p>}
-      <ul className="tweets">
+      {tweets.length === 0 && <p className='tweets-empty'>No Tweets Yet</p>}
+      <ul className='tweets'>
         {tweets.map((tweet) => (
           <TweetCard
             key={tweet.id}
